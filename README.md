@@ -3,7 +3,7 @@
 A fun and visually engaging **To-Do List** app that integrates a colorful **calendar**! Plan your day, mark your tasks, and make your productivity journey more joyful 💖✨
 
 <p align="center">
-  <img src="assets/image.png" alt="Logo" width="40" height="40">
+  <img src="assets/image.png" alt="Logo" width="500" height="500">
 </p>
 
 
@@ -15,7 +15,6 @@ A fun and visually engaging **To-Do List** app that integrates a colorful **cale
 - 📆 Calendar with animated icons on task dates
 - 💾 Tasks saved with `localStorage` (no backend needed!)
 - 💖 Custom emoji markers for fun interactions
-- 📱 Responsive design for desktop & mobile
 
 ---
 
@@ -34,4 +33,39 @@ Dates with tasks will show a 💖 icon using CSS animation:
 }
 
 ```
+## 🛠️ Tech Stack
 
+- HTML5
+- CSS3 (with animations)
+- JavaScript (Vanilla)
+- localStorage API
+
+
+---
+## 🚀How to Run
+
+1. 📦 Clone this repository
+```yaml
+git clone https://github.com/your-username/to-do-calendar.git
+cd to-do-calendar
+```
+2. ▶️ Open the app
+```yaml
+open index.html
+```
+
+---
+## 🧑‍💻 Author
+
+<div align="center">
+
+
+### 👋 Hi, I’m **Dewi Atika Muthi**
+
+🎓 *Undergraduate Student – Software Engineering*  
+🏫 *Telkom University – School of Computing*  
+🎯 *Passionate about Web, Mobile, and User-Centered Design*
+
+<br/>
+
+</div>
