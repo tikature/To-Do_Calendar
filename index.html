@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pink To-Do Calendar</title>
+    <!-- Memanggil file CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="floating-particles"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>To-Do Calendar</h1>
+            <p>Kelola tugas-tugasmu dengan cara yang menyenangkan!</p>
+        </div>
+
+        <div class="main-content">
+            <div class="todo-section">
+                <h2><img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDZveW1md21nY3A0cW14ZzByanFoMGltMXE5OGtucDhmN2xzbGFueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3FvaG9XbBRbLtdaUUP/giphy.gif"
+                        width="30px" height="30px">
+                    Daftar Tugas</h2>
+                <div class="todo-input">
+                    <input type="text" id="todoInput" placeholder="Masukkan tugas baru...">
+                    <button class="add-btn" onclick="addTodo()">Tambah</button>
+                </div>
+                <div class="todo-list" id="todoList"></div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <h3 id="totalTasks">0</h3>
+                        <p>Total</p>
+                    </div>
+                    <div class="stat">
+                        <h3 id="completedTasks">0</h3>
+                        <p>Selesai</p>
+                    </div>
+                    <div class="stat">
+                        <h3 id="pendingTasks">0</h3>
+                        <p>Pending</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calendar-section">
+                <div class="calendar-header">
+                    <button class="nav-btn" onclick="previousMonth()">❮</button>
+                    <h2 id="currentMonth"></h2>
+                    <button class="nav-btn" onclick="nextMonth()">❯</button>
+                </div>
+
+                <div class="calendar-grid" id="calendarGrid">
+                    <div class="day-header">Min</div>
+                    <div class="day-header">Sen</div>
+                    <div class="day-header">Sel</div>
+                    <div class="day-header">Rab</div>
+                    <div class="day-header">Kam</div>
+                    <div class="day-header">Jum</div>
+                    <div class="day-header">Sab</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Memanggil file JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
