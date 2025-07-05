@@ -1,7 +1,8 @@
+// Revisi Lengkap Aplikasi Todo dengan Kalender & Perbaikan Bug
+
 let todos = [];
 let currentDate = new Date();
 let selectedDate = null;
-let todoIdCounter = 0;
 
 // Inisialisasi partikel mengambang
 function createParticles() {
@@ -16,33 +17,36 @@ function createParticles() {
     }
 }
 
+function generateUniqueId() {
+    return Date.now().toString() + Math.random().toString(36).substring(2, 6);
+}
+
 // Inisialisasi kalender
 function initCalendar() {
     updateCalendarDisplay();
     createParticles();
+    loadTodosFromLocalStorage();
+    updateTodoList();
+    updateStats();
 }
 
-// Update tampilan kalender
 function updateCalendarDisplay() {
-    const monthNames = [
-        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-    ];
-
-    document.getElementById('currentMonth').textContent =
-        `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
-
+    const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    document.getElementById('currentMonth').textContent = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
     generateCalendarDays();
 }
 
-// Generate hari-hari dalam kalender
 function generateCalendarDays() {
     const grid = document.getElementById('calendarGrid');
-
-    // Hapus hari-hari sebelumnya (kecuali header)
-    const dayHeaders = grid.querySelectorAll('.day-header');
     grid.innerHTML = '';
-    dayHeaders.forEach(header => grid.appendChild(header));
+
+    const dayHeaders = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+    dayHeaders.forEach(day => {
+        const header = document.createElement('div');
+        header.className = 'day-header';
+        header.textContent = day;
+        grid.appendChild(header);
+    });
 
     const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
@@ -52,47 +56,34 @@ function generateCalendarDays() {
     for (let i = 0; i < 42; i++) {
         const dayElement = document.createElement('div');
         dayElement.className = 'calendar-day';
-
         const currentDateIter = new Date(startDate);
         currentDateIter.setDate(startDate.getDate() + i);
 
         dayElement.textContent = currentDateIter.getDate();
-
         if (currentDateIter.getMonth() !== currentDate.getMonth()) {
             dayElement.style.opacity = '0.3';
         }
 
-        // Cek apakah ada tugas pada tanggal ini
         const dateStr = currentDateIter.toDateString();
         const hasTask = todos.some(todo => todo.date === dateStr);
-        if (hasTask) {
-            dayElement.classList.add('has-task');
-        }
+        if (hasTask) dayElement.classList.add('has-task');
 
-        // Cek apakah ini tanggal yang dipilih
         if (selectedDate && currentDateIter.toDateString() === selectedDate.toDateString()) {
             dayElement.classList.add('selected');
         }
 
         dayElement.addEventListener('click', () => selectDate(currentDateIter));
-
         grid.appendChild(dayElement);
     }
 }
 
-// Pilih tanggal
 function selectDate(date) {
     selectedDate = date;
     updateCalendarDisplay();
-
-    // Animasi selection
     const selectedEl = document.querySelector('.calendar-day.selected');
-    if (selectedEl) {
-        selectedEl.style.animation = 'pulse 0.5s ease-in-out';
-    }
+    if (selectedEl) selectedEl.style.animation = 'pulse 0.5s ease-in-out';
 }
 
-// Navigasi bulan
 function previousMonth() {
     currentDate.setMonth(currentDate.getMonth() - 1);
     updateCalendarDisplay();
@@ -103,15 +94,13 @@ function nextMonth() {
     updateCalendarDisplay();
 }
 
-// Tambah tugas baru
 function addTodo() {
     const input = document.getElementById('todoInput');
     const text = input.value.trim();
-
     if (text === '') return;
 
     const todo = {
-        id: todoIdCounter++,
+        id: generateUniqueId(),
         text: text,
         completed: false,
         date: selectedDate ? selectedDate.toDateString() : null,
@@ -120,13 +109,12 @@ function addTodo() {
 
     todos.push(todo);
     input.value = '';
-
+    saveTodosToLocalStorage();
     updateTodoList();
     updateCalendarDisplay();
     updateStats();
 }
 
-// Update daftar tugas
 function updateTodoList() {
     const todoList = document.getElementById('todoList');
     todoList.innerHTML = '';
@@ -164,41 +152,55 @@ function updateTodoList() {
     });
 }
 
-// Toggle status tugas
 function toggleTodo(id) {
     const todo = todos.find(t => t.id === id);
     if (todo) {
         todo.completed = !todo.completed;
+        saveTodosToLocalStorage();
         updateTodoList();
         updateStats();
     }
 }
 
-// Hapus tugas
 function deleteTodo(id) {
     todos = todos.filter(t => t.id !== id);
+    saveTodosToLocalStorage();
     updateTodoList();
     updateCalendarDisplay();
     updateStats();
 }
 
-// Update statistik
 function updateStats() {
     document.getElementById('totalTasks').textContent = todos.length;
     document.getElementById('completedTasks').textContent = todos.filter(t => t.completed).length;
     document.getElementById('pendingTasks').textContent = todos.filter(t => !t.completed).length;
 }
 
-// Event listener untuk Enter key
+function saveTodosToLocalStorage() {
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function loadTodosFromLocalStorage() {
+    const saved = localStorage.getItem('todos');
+    if (saved) {
+        todos = JSON.parse(saved);
+        todos.forEach(todo => {
+            if (todo.date) todo.date = new Date(todo.date).toDateString();
+            if (todo.createdAt) todo.createdAt = new Date(todo.createdAt);
+        });
+    }
+}
+
 document.getElementById('todoInput').addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         addTodo();
     }
 });
 
-// Inisialisasi aplikasi
 document.addEventListener('DOMContentLoaded', function () {
+    loadTodosFromLocalStorage();
     initCalendar();
     updateTodoList();
     updateStats();
 });
+

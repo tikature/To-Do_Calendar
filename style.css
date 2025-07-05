@@ -58,20 +58,21 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
     align-items: start;
+
 }
 
 .todo-section {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 25px;
+    flex: 1 1 480px;
+    background: #fff0f5;
+    padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
 }
 
 .todo-section h2 {
     color: #ff1493;
-    margin-bottom: 20px;
-    font-size: 1.8em;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .todo-input {
@@ -182,11 +183,19 @@ body {
     transform: scale(1.1);
 }
 
+
 .calendar-section {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 25px;
+    flex: 1 1 480px;
+    background: #fff0f5;
+    padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
+}
+
+.calendar-section h2 {
+    color: #ff1493;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .calendar-header {
@@ -205,7 +214,7 @@ body {
     background: linear-gradient(45deg, #ff69b4, #ff1493);
     color: white;
     border: none;
-    padding: 8px 15px;
+    padding: 7px 15px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 18px;
@@ -259,7 +268,7 @@ body {
     position: absolute;
     top: -10px;
     right: -5px;
-    font-size: 30px;
+    font-size: 25px;
     animation: bounce 2s infinite;
 }
 
@@ -359,12 +368,8 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-    .main-content {
-        grid-template-columns: 1fr;
-    }
-
-    .header h1 {
-        font-size: 2em;
+@media (max-width: 480px) {
+    .calendar-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
