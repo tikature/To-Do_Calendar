@@ -1,3 +1,23 @@
+.author-sign {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 14px;
+    color: #ff69b4;
+    font-style: italic;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px 12px;
+    border-radius: 15px;
+    box-shadow: 0 2px 6px rgba(255, 105, 180, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.author-sign:hover {
+    transform: scale(1.05);
+    background-color: #fff0f5;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -41,26 +61,6 @@ body {
     margin-bottom: 10px;
 }
 
-.author-sign {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 14px;
-    color: #ff69b4;
-    font-style: italic;
-    font-weight: 500;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 5px 12px;
-    border-radius: 15px;
-    box-shadow: 0 2px 6px rgba(255, 105, 180, 0.2);
-    transition: transform 0.3s ease;
-}
-
-.author-sign:hover {
-    transform: scale(1.05);
-    background-color: #fff0f5;
-}
-
 @keyframes gradientShift {
 
     0%,
@@ -78,21 +78,20 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 30px;
     align-items: start;
-
 }
 
 .todo-section {
-    flex: 1 1 480px;
-    background: #fff0f5;
-    padding: 20px;
+    background: rgb(254, 241, 241);
+    padding: 25px;
     border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .todo-section h2 {
     color: #ff1493;
-    text-align: center;
     margin-bottom: 20px;
+    font-size: 1.8em;
+    text-align: center;
 }
 
 .todo-input {
@@ -203,19 +202,12 @@ body {
     transform: scale(1.1);
 }
 
-
 .calendar-section {
-    flex: 1 1 480px;
-    background: #fff0f5;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
-}
+    background: rgb(254, 241, 241);
 
-.calendar-section h2 {
-    color: #ff1493;
-    text-align: center;
-    margin-bottom: 20px;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .calendar-header {
@@ -234,7 +226,7 @@ body {
     background: linear-gradient(45deg, #ff69b4, #ff1493);
     color: white;
     border: none;
-    padding: 7px 15px;
+    padding: 8px 15px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 18px;
@@ -288,7 +280,7 @@ body {
     position: absolute;
     top: -10px;
     right: -5px;
-    font-size: 25px;
+    font-size: 30px;
     animation: bounce 2s infinite;
 }
 
@@ -388,8 +380,12 @@ body {
     }
 }
 
-@media (max-width: 480px) {
-    .calendar-grid {
-        grid-template-columns: repeat(3, 1fr);
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+        font-size: 2em;
     }
 }
