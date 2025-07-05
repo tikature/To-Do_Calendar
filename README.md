@@ -2,7 +2,10 @@
 
 A fun and visually engaging **To-Do List** app that integrates a colorful **calendar**! Plan your day, mark your tasks, and make your productivity journey more joyful 💖✨
 
-<img src="assets/image.png">
+<p align="center">
+  <img src="assets/image.png" alt="Logo" width="40" height="40">
+</p>
+
 
 ---
 
