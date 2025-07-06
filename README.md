@@ -46,7 +46,7 @@ Dates with tasks will show a 💖 icon using CSS animation:
 
 1. 📦 Clone this repository
 ```yaml
-git clone https://github.com/your-username/to-do-calendar.git
+git clone https://github.com/tikature/to-do-calendar.git
 cd to-do-calendar
 ```
 2. ▶️ Open the app
