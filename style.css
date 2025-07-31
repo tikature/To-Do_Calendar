@@ -11,11 +11,21 @@
     border-radius: 15px;
     box-shadow: 0 2px 6px rgba(255, 105, 180, 0.2);
     transition: transform 0.3s ease;
+    z-index: 10;
 }
 
 .author-sign:hover {
     transform: scale(1.05);
     background-color: #fff0f5;
+}
+
+.author-sign a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.author-sign a:hover {
+    text-decoration: underline;
 }
 
 * {
@@ -28,8 +38,9 @@ body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
     min-height: 100vh;
-    padding: 20px;
+    padding: 15px;
     color: #333;
+    overflow-x: hidden;
 }
 
 .container {
@@ -37,27 +48,36 @@ body {
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0 20px 40px rgba(255, 182, 193, 0.3);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 192, 203, 0.3);
+    width: 100%;
 }
 
 .header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     position: relative;
     overflow: hidden;
+    padding-top: 25px;
 }
 
 .header h1 {
-    font-size: 3em;
+    font-size: clamp(2em, 5vw, 3em);
     background: linear-gradient(45deg, #ff69b4, #ff1493, #dc143c, #ff69b4);
     background-size: 400% 400%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradientShift 3s ease-in-out infinite;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.header p {
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: #ff1493;
     margin-bottom: 10px;
 }
 
@@ -76,36 +96,46 @@ body {
 .main-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    gap: 20px;
     align-items: start;
 }
 
-.todo-section {
+.todo-section,
+.calendar-section {
     background: rgb(254, 241, 241);
-    padding: 25px;
+    padding: 20px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    min-width: 0;
 }
 
-.todo-section h2 {
+.todo-section h2,
+.calendar-section h2 {
     color: #ff1493;
-    margin-bottom: 20px;
-    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-size: clamp(1.3em, 3vw, 1.8em);
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .todo-input {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 8px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
 .todo-input input {
     flex: 1;
+    min-width: 200px;
     padding: 12px;
     border: 2px solid #ddd;
     border-radius: 25px;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px);
     transition: all 0.3s ease;
 }
 
@@ -122,8 +152,9 @@ body {
     padding: 12px 20px;
     border-radius: 25px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px);
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .add-btn:hover {
@@ -132,14 +163,15 @@ body {
 }
 
 .todo-list {
-    max-height: 400px;
+    max-height: 350px;
     overflow-y: auto;
+    margin-bottom: 15px;
 }
 
 .todo-item {
     background: white;
-    margin-bottom: 10px;
-    padding: 15px;
+    margin-bottom: 8px;
+    padding: 12px;
     border-radius: 10px;
     border-left: 4px solid #ff69b4;
     box-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
@@ -148,6 +180,8 @@ body {
     align-items: center;
     transition: all 0.3s ease;
     animation: slideIn 0.5s ease;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .todo-item:hover {
@@ -159,6 +193,12 @@ body {
     opacity: 0.7;
     text-decoration: line-through;
     border-left-color: #ffc0cb;
+}
+
+.todo-item span {
+    flex: 1;
+    word-break: break-word;
+    min-width: 0;
 }
 
 @keyframes slideIn {
@@ -176,14 +216,15 @@ body {
 .todo-actions {
     display: flex;
     gap: 5px;
+    flex-shrink: 0;
 }
 
 .todo-actions button {
     border: none;
-    padding: 8px 12px;
+    padding: 6px 10px;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: clamp(10px, 1.5vw, 12px);
     transition: all 0.3s ease;
 }
 
@@ -202,35 +243,24 @@ body {
     transform: scale(1.1);
 }
 
-.calendar-section {
-    background: rgb(254, 241, 241);
-
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
 .calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-}
-
-.calendar-header h2 {
-    color: #ff1493;
-    font-size: 1.8em;
+    margin-bottom: 15px;
 }
 
 .nav-btn {
     background: linear-gradient(45deg, #ff69b4, #ff1493);
     color: white;
     border: none;
-    padding: 8px 15px;
+    padding: 8px 12px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     transition: all 0.3s ease;
+    min-width: 40px;
+    height: 40px;
 }
 
 .nav-btn:hover {
@@ -240,14 +270,14 @@ body {
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: 4px;
+    margin-bottom: 15px;
 }
 
 .calendar-day {
     aspect-ratio: 1;
     border: 2px solid #ffc0cb;
-    border-radius: 10px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -256,6 +286,8 @@ body {
     transition: all 0.3s ease;
     position: relative;
     background: white;
+    font-size: clamp(10px, 2vw, 14px);
+    min-height: 35px;
 }
 
 .calendar-day:hover {
@@ -278,9 +310,9 @@ body {
 .calendar-day.has-task::after {
     content: '💖';
     position: absolute;
-    top: -10px;
-    right: -5px;
-    font-size: 30px;
+    top: -8px;
+    right: -4px;
+    font-size: clamp(12px, 2vw, 20px);
     animation: bounce 2s infinite;
 }
 
@@ -304,7 +336,7 @@ body {
     }
 
     50% {
-        transform: translateY(-5px);
+        transform: translateY(-3px);
     }
 }
 
@@ -312,24 +344,30 @@ body {
     font-weight: bold;
     color: #ff1493;
     background: linear-gradient(45deg, #ffc0cb, #ffb6c1);
-    border-radius: 8px;
-    padding: 8px;
+    border-radius: 6px;
+    padding: 6px 4px;
+    font-size: clamp(10px, 1.8vw, 12px);
+    text-align: center;
 }
 
 .stats {
     display: flex;
     justify-content: space-around;
-    margin-top: 20px;
+    gap: 10px;
+    margin-top: 15px;
     text-align: center;
+    flex-wrap: wrap;
 }
 
 .stat {
     background: linear-gradient(45deg, #ff69b4, #ff1493);
     color: white;
-    padding: 15px;
+    padding: 12px 8px;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
     transition: all 0.3s ease;
+    flex: 1;
+    min-width: 70px;
 }
 
 .stat:hover {
@@ -337,8 +375,12 @@ body {
 }
 
 .stat h3 {
-    font-size: 2em;
+    font-size: clamp(1.2em, 3vw, 2em);
     margin-bottom: 5px;
+}
+
+.stat p {
+    font-size: clamp(10px, 1.5vw, 12px);
 }
 
 .floating-particles {
@@ -380,12 +422,166 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-    .main-content {
-        grid-template-columns: 1fr;
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+    .container {
+        padding: 18px;
     }
 
-    .header h1 {
-        font-size: 2em;
+    .main-content {
+        gap: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .header {
+        margin-bottom: 20px;
+        padding-top: 30px;
+    }
+
+    .author-sign {
+        position: static;
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+
+    .todo-input {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .todo-input input {
+        min-width: 100%;
+    }
+
+    .add-btn {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .todo-section,
+    .calendar-section {
+        padding: 15px;
+    }
+
+    .calendar-grid {
+        gap: 3px;
+    }
+
+    .calendar-day {
+        min-height: 32px;
+        border-radius: 6px;
+    }
+
+    .stats {
+        gap: 8px;
+    }
+
+    .stat {
+        padding: 10px 6px;
+        min-width: 60px;
+    }
+
+    .todo-item {
+        padding: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .todo-actions {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 8px;
+    }
+
+    .container {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .header {
+        padding-top: 35px;
+    }
+
+    .todo-section,
+    .calendar-section {
+        padding: 12px;
+    }
+
+    .calendar-day {
+        min-height: 28px;
+        font-size: 10px;
+    }
+
+    .day-header {
+        padding: 4px 2px;
+        font-size: 9px;
+    }
+
+    .calendar-day.has-task::after {
+        font-size: 12px;
+        top: -6px;
+        right: -3px;
+    }
+
+    .nav-btn {
+        min-width: 35px;
+        height: 35px;
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+
+    .todo-list {
+        max-height: 250px;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 10px;
+    }
+
+    .todo-section,
+    .calendar-section {
+        padding: 10px;
+    }
+
+    .calendar-day {
+        min-height: 25px;
+        font-size: 9px;
+    }
+
+    .day-header {
+        font-size: 8px;
+        padding: 3px 1px;
+    }
+
+    .stat h3 {
+        font-size: 1.2em;
+    }
+
+    .stat p {
+        font-size: 9px;
     }
 }
