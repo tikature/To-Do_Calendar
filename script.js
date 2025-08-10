@@ -1,10 +1,7 @@
-// Revisi Lengkap Aplikasi Todo dengan Kalender & Perbaikan Bug
-
 let todos = [];
 let currentDate = new Date();
 let selectedDate = null;
 
-// Inisialisasi partikel mengambang
 function createParticles() {
     const particlesContainer = document.querySelector('.floating-particles');
     for (let i = 0; i < 50; i++) {
@@ -53,6 +50,9 @@ function generateCalendarDays() {
     const startDate = new Date(firstDay);
     startDate.setDate(startDate.getDate() - firstDay.getDay());
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     for (let i = 0; i < 42; i++) {
         const dayElement = document.createElement('div');
         dayElement.className = 'calendar-day';
@@ -60,6 +60,7 @@ function generateCalendarDays() {
         currentDateIter.setDate(startDate.getDate() + i);
 
         dayElement.textContent = currentDateIter.getDate();
+
         if (currentDateIter.getMonth() !== currentDate.getMonth()) {
             dayElement.style.opacity = '0.3';
         }
@@ -67,6 +68,16 @@ function generateCalendarDays() {
         const dateStr = currentDateIter.toDateString();
         const hasTask = todos.some(todo => todo.date === dateStr);
         if (hasTask) dayElement.classList.add('has-task');
+
+        if (currentDateIter.getTime() === today.getTime()) {
+            dayElement.classList.add('today');
+        }
+
+        if (currentDateIter < today) {
+            dayElement.classList.add('disabled-day');
+            dayElement.style.opacity = '0.4';
+            dayElement.style.pointerEvents = 'none';
+        }
 
         if (selectedDate && currentDateIter.toDateString() === selectedDate.toDateString()) {
             dayElement.classList.add('selected');

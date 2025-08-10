@@ -402,6 +402,19 @@ body {
     animation: float 6s infinite linear;
 }
 
+
+.calendar-day.today {
+    background-color: #ff47a9;
+    border-radius: 15%;
+    font-weight: bold;
+    color: white;
+}
+
+.calendar-day.disabled-day {
+    color: #aaa;
+    cursor: not-allowed;
+}
+
 @keyframes float {
     0% {
         transform: translateY(100vh) rotate(0deg);

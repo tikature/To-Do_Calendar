@@ -16,16 +16,18 @@
         <div class="header">
             <h1>To-Do Calendar</h1>
             <p>Kelola tugas-tugasmu dengan cara yang menyenangkan!</p>
-            <span class="author-sign">🖋️ by <a href="https://github.com/tikature">tikature</a></span>
+            <span class="author-sign">🖋️ by <a href="https://github.com/tikature" target="_blank">tikature</a></span>
         </div>
 
         <div class="main-content">
             <div class="todo-section">
-                <h2><img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDZveW1md21nY3A0cW14ZzByanFoMGltMXE5OGtucDhmN2xzbGFueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3FvaG9XbBRbLtdaUUP/giphy.gif"
-                        width="30px" height="30px">
-                    Daftar Tugas</h2>
+                <h2>
+                    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDZveW1md21nY3A0cW14ZzByanFoMGltMXE5OGtucDhmN2xzbGFueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3FvaG9XbBRbLtdaUUP/giphy.gif"
+                        width="30" height="30" alt="Checklist">
+                    Daftar Tugas
+                </h2>
                 <div class="todo-input">
-                    <input type="text" id="todoInput" placeholder="Masukkan tugas baru...">
+                    <input type="text" id="todoInput" placeholder="Masukkan tugas baru..." autocomplete="off">
                     <button class="add-btn" onclick="addTodo()">Tambah</button>
                 </div>
                 <div class="todo-list" id="todoList"></div>
@@ -54,13 +56,6 @@
                 </div>
 
                 <div class="calendar-grid" id="calendarGrid">
-                    <div class="day-header">Min</div>
-                    <div class="day-header">Sen</div>
-                    <div class="day-header">Sel</div>
-                    <div class="day-header">Rab</div>
-                    <div class="day-header">Kam</div>
-                    <div class="day-header">Jum</div>
-                    <div class="day-header">Sab</div>
                 </div>
             </div>
         </div>
