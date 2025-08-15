@@ -54,18 +54,13 @@ cd to-do-calendar
 open index.html
 ```
 
----
-## 🧑‍💻 Author
 
+---
+## 👩‍💻 Tentang Pengembang
 <div align="center">
 
-
-### 👋 Hi, I’m **Dewi Atika Muthi**
-
-🎓 *Undergraduate Student – Software Engineering*  
-🏫 *Telkom University – School of Computing*  
-🎯 *Passionate about Web, Mobile, and User-Centered Design*
-
-<br/>
-
+By **Dewi Atika Muthi**  
+📍 _Informatics Student, Telkom University_  
+📧 **Email:** detikaa10@fmail.com  
+🌐 **GitHub:** [@tikature](https://github.com/tikature)  
 </div>
